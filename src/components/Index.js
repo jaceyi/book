@@ -38,7 +38,7 @@ class Index extends React.Component {
     await searchBook(text)
       .then(
         data => {
-          console.log(data.books);
+          console.log(data.books)
           this.setState({
             searchLists: data.books
           })

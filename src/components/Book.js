@@ -1,14 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {getBook, getBookOrigin, getChapterList} from '../requests';
+import {getBook} from '../requests';
 import {realBookCover, dateToStr} from '../util';
+import content from '../content';
 
 class Book extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       bookInfo: {},
-      chapterList: [],
       order: true
     };
   }
@@ -16,7 +16,6 @@ class Book extends React.Component {
   componentWillMount() {
     const bookId = this.props.match.params.id;
     this.getBook(bookId);
-    this.getBookOrigin(bookId);
   }
 
   async getBook(id) {
@@ -26,30 +25,6 @@ class Book extends React.Component {
           this.setState({
             bookInfo: data
           })
-        }
-      )
-  }
-
-  async getBookOrigin(id) {
-    await getBookOrigin(id)
-      .then(
-        data => {
-          let index = data.findIndex(item => item.source === 'my176');
-          if (index < 0) {
-            index = 0
-          }
-          this.getChapterList(data[index]._id)
-        }
-      )
-  }
-
-  async getChapterList(id) {
-    await getChapterList(id)
-      .then(
-        data => {
-          this.setState({
-            chapterList: data.chapters
-          });
         }
       )
   }
@@ -68,9 +43,12 @@ class Book extends React.Component {
 
   render() {
     const {
-      bookInfo,
-      chapterList
+      bookInfo
     } = this.state;
+
+    const {
+      chapterList
+    } = this.props;
 
     const {
       handleClickReverse
@@ -104,7 +82,7 @@ class Book extends React.Component {
               {
                 chapterList.map(item => (
                   <div key={item.link} className={'book__chapter_item'}>
-                    <Link to={`/chapter/${encodeURIComponent(item.link)}`}>
+                    <Link to={`/book/${bookInfo._id}/chapter/${encodeURIComponent(item.link)}`}>
                       {
                         item.title
                       }
@@ -120,4 +98,4 @@ class Book extends React.Component {
   }
 }
 
-export default Book;
+export default content(Book);

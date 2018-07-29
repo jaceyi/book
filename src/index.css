@@ -188,3 +188,14 @@ img {
   font-size: 1.0rem;
   line-height: 1.4;
 }
+
+.chapter__ctrl {
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+}
+
+.chapter__ctrl a{
+  color: #fff;
+  padding: 8px 12px;
+}
