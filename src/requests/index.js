@@ -1,7 +1,27 @@
 import axios from 'axios';
+import apis from './apis';
 
-export const searchBook = async function (params) {
-  const response = await axios.get('/api/book/fuzzy-search?query=%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9&start=0');
-  console.log(response);
+export async function searchBook(params) {
+  const response = await axios.get(apis.searchBook(params));
   return response.data
-};
+}
+
+export async function getBook(params) {
+  const response = await axios.get(apis.getBook(params));
+  return response.data
+}
+
+export async function getBookOrigin(params) {
+  const response = await axios.get(apis.getBookOrigin(params));
+  return response.data
+}
+
+export async function getChapterList(params) {
+  const response = await axios.get(apis.getChapterList(params));
+  return response.data
+}
+
+export async function getChapter(params) {
+  const response = await axios.get(apis.getChapter(params));
+  return response.data
+}

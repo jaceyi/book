@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url("//yijic.com/public/images/bg/1.jpg") no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+.index {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.search__form {
+  margin: 40vh auto 0;
+  width: 80%;
+  font-size: 0;
+  height: 36px;
+  position: relative;
+  z-index: 7;
+  transition: .5s all;
+  color: #fff;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.search__form.active {
+  margin-top: 10px;
+  width: 90%;
+}
+
+.search__input {
+  width: 78%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  outline: none;
+  font-size: 16px;
+  padding: 5px 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-right: 0;
+  color: #fff;
+}
+
+.search__input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.search__button {
+  width: 22%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  color: #fff;
+}
+
+.search__list {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.8);
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.search__list_item {
+  padding: 5px 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.search__list_item:last-child {
+  border: 0;
+  margin: 0;
+}
+
+.search__list_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search__list_author {
+  font-size: 12px;
+}
+
+.search__list_intro {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.book {
+  height: 100vh;
+  background-color: rgba(255,255,255,0.8);
+  overflow: auto;
+}
+
+.book__info {
+  padding: 10px;
+  position: relative;
+}
+
+.book__info_top {
+  display: flex;
+}
+
+.book__info_img {
+  width: 80px;
+}
+
+.book__info_bottom {
+  font-size: 14px;
+  color: #333;
+}
+
+.book__chapter_tip {
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  padding: 0 10px;
+  line-height: 36px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book__chapter_list {
+  padding: 0 2%;
+}
+
+.book__chapter_reverse {
+  border: 1px solid #eee;
+  padding: 6px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 5px;
+  color: #333;
+  outline: none;
+}
+
+.book__chapter_item {
+  line-height: 36px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  height: 36px;
+  overflow: hidden;
+}
+
+.book__chapter_item a {
+  display: block;
+  padding: 0 10px;
+}
+
+.chapter {
+  background-color: rgba(0,0,0,0.8);
+  height: 100vh;
+  overflow: auto;
+}
+
+.chapter__content {
+  color: #ccc;
+  padding: 20px 10px;
+  font-size: 18px;
+}
+
+.chapter__per {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 1.0rem;
+  line-height: 1.4;
+}
