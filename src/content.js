@@ -1,8 +1,10 @@
 import React from 'react';
-import {getBookOrigin, getChapterList} from "./requests";
+import {getBook, getBookOrigin, getChapterList} from "./requests";
 
 const store = {
-  chapterList: []
+  chapterList: [],
+  bookInfo: {},
+  order: true
 };
 
 export default function content(Component) {
@@ -10,7 +12,9 @@ export default function content(Component) {
     constructor(props) {
       super(props);
       this.state = {
-        chapterList: []
+        chapterList: [],
+        bookInfo: {},
+        order: true
       };
     }
 
@@ -18,11 +22,24 @@ export default function content(Component) {
       const bookId = this.props.match.params.id;
       if (store.chapterList.length) {
         this.setState({
-          chapterList: store.chapterList
+          ...store
         });
       } else {
+        this.getBook(bookId);
         this.getBookOrigin(bookId);
       }
+    }
+
+    async getBook(id) {
+      await getBook(id)
+        .then(
+          data => {
+            store.bookInfo = data;
+            this.setState({
+              bookInfo: data
+            });
+          }
+        )
     }
 
     async getBookOrigin(id) {
@@ -43,21 +60,38 @@ export default function content(Component) {
         .then(
           data => {
             const {chapters: chapterList} = data;
+            store.chapterList = chapterList
             this.setState({
               chapterList
-            });
-            store.chapterList = chapterList
+            })
           }
         )
     }
 
-    render() {
+    reverseChapterList() {
       const {
-        chapterList
+        chapterList,
+        order
       } = this.state;
 
+      const _ = {
+        order: !order,
+        chapterList: chapterList.reverse()
+      };
+
+      this.setState(_);
+      Object.assign(store, _)
+    }
+
+    render() {
+      const {
+        reverseChapterList
+      } = this;
+
       return (
-        <Component {...this.props} chapterList={chapterList}/>
+        <Component {...this.props}
+                   {...this.state}
+                   reverseChapterList={reverseChapterList.bind(this)}/>
       )
     }
   }

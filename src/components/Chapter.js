@@ -2,6 +2,7 @@ import React from 'react';
 import {getChapter} from '../requests';
 import {Link} from 'react-router-dom';
 import content from '../content';
+import {getChapterLink} from '../util';
 
 class Chapter extends React.Component {
   constructor(props) {
@@ -24,26 +25,18 @@ class Chapter extends React.Component {
   }
 
   init(props) {
-    const {chapterList, match} = props;
+    const {chapterList, match, order} = props;
     const {link: chapterLink, id: bookId} = match.params;
     const currentChapterLink = decodeURIComponent(chapterLink);
     const currentIndex = chapterList.findIndex(item => item.link === currentChapterLink);
 
     if (currentIndex >= 0) {
-      let nextChapterLink = '';
-      let prevChapterLink = '';
-
-      switch (currentIndex) {
-        case 0:
-          nextChapterLink = chapterList[currentIndex + 1].link;
-          break;
-        case chapterList.length - 1:
-          prevChapterLink = chapterList[currentIndex - 1].link;
-          break;
-        default:
-          prevChapterLink = chapterList[currentIndex - 1].link;
-          nextChapterLink = chapterList[currentIndex + 1].link;
-      }
+      const prenIndex = order ? currentIndex - 1 : currentIndex + 1;
+      const nextIndex = order ? currentIndex + 1 : currentIndex - 1;
+      const prevChapter = chapterList[prenIndex];
+      const nextChapter = chapterList[nextIndex];
+      const nextChapterLink = nextChapter ? nextChapter.link : '';
+      const prevChapterLink = prevChapter ? prevChapter.link : '';
 
       this.setState({
         bookId,
@@ -86,6 +79,9 @@ class Chapter extends React.Component {
       nextChapterLink
     } = this.state;
 
+    const _prevChapterLink = getChapterLink(prevChapterLink, bookId);
+    const _nextChapterLink = getChapterLink(nextChapterLink, bookId);
+
     return (
       <div className={'chapter'}>
         <div className={'chapter__content'}>
@@ -96,9 +92,9 @@ class Chapter extends React.Component {
           </pre>
         </div>
         <div className={'chapter__ctrl'}>
-          <Link to={`/book/${bookId}/chapter/${encodeURIComponent(prevChapterLink)}`}>上一章</Link>
+          <Link to={_prevChapterLink}>上一章</Link>
           <Link to={`/book/${bookId}`}>返回列表</Link>
-          <Link to={`/book/${bookId}/chapter/${encodeURIComponent(nextChapterLink)}`}>下一章</Link>
+          <Link to={_nextChapterLink}>下一章</Link>
         </div>
       </div>
     )
