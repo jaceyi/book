@@ -13,6 +13,18 @@ function Book(props) {
   } = props;
 
   const date = new Date(bookInfo.updated);
+  let lastChapter = {
+    title: '暂无',
+    link: '/'
+  };
+  if (chapterList.length) {
+    const firstChapter = chapterList[0];
+    if (firstChapter.title === bookInfo.lastChapter) {
+      lastChapter = firstChapter
+    } else {
+      lastChapter = chapterList[chapterList.length - 1]
+    }
+  }
 
   return (
     <Loading loading={loading}>
@@ -29,6 +41,7 @@ function Book(props) {
                   <p>作者：{bookInfo.author}</p>
                   <p>类型：{bookInfo.majorCate}</p>
                   <p>更新时间：{dateToStr(date)}</p>
+                  <p>最新章节：<Link to={getChapterLink(lastChapter.link, bookInfo._id)}>{lastChapter.title}</Link></p>
                 </div>
               </div>
               <div className={'book__info_bottom'}>{bookInfo.longIntro}</div>

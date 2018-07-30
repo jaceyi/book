@@ -5,12 +5,14 @@ export default function ({loading, children}) {
     <div className={'loading__container'}>
       {
         loading ?
-          <div className={'loading'}>
-            <div><span/></div>
-            <div><span/></div>
-            <div><span/></div>
-            <div><span/></div>
-          </div> : children
+          <div>
+            <div className={'loading'}>
+              <div><span/></div>
+              <div><span/></div>
+              <div><span/></div>
+              <div><span/></div>
+            </div>
+          </div>: children
       }
     </div>
   )
