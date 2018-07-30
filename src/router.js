@@ -5,8 +5,10 @@ import Book from './components/Book';
 import Chapter from './components/Chapter';
 
 export default function() {
+  const bgUrl = `url(//yijic.com/public/images/bg/${Math.floor(Math.random() * 13 + 1)}.jpg)`;
+
   return(
-    <div className={'container'}>
+    <div className={'container'} style={{backgroundImage: bgUrl}}>
       <HashRouter>
         <Switch>
           <Route path={'/'} exact component={Index}/>

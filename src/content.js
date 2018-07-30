@@ -14,17 +14,23 @@ export default function content(Component) {
       this.state = {
         chapterList: [],
         bookInfo: {},
-        order: true
+        order: true,
+        loading: false
       };
     }
 
     componentWillMount() {
       const bookId = this.props.match.params.id;
-      if (store.chapterList.length) {
+      const {bookInfo} = store;
+
+      if (bookInfo._id === bookId && store.chapterList.length) {
         this.setState({
           ...store
         });
       } else {
+        this.setState({
+          loading: true
+        });
         this.getBook(bookId);
         this.getBookOrigin(bookId);
       }
@@ -60,9 +66,10 @@ export default function content(Component) {
         .then(
           data => {
             const {chapters: chapterList} = data;
-            store.chapterList = chapterList
+            store.chapterList = chapterList;
             this.setState({
-              chapterList
+              chapterList,
+              loading: false
             })
           }
         )

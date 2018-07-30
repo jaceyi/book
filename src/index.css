@@ -72,10 +72,19 @@ img {
 .search__list {
   margin-top: 10px;
   width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.search__list.active {
   padding: 10px;
-  background-color: rgba(255,255,255,0.8);
   flex: 1 1 auto;
   overflow: auto;
+  height: auto;
+  opacity: 1;
 }
 
 .search__list_item {
@@ -111,8 +120,16 @@ img {
 
 .book {
   height: 100vh;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   overflow: auto;
+}
+
+.book__home_button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 32px;
+  height: 32px;
 }
 
 .book__info {
@@ -151,7 +168,7 @@ img {
 .book__chapter_reverse {
   border: 1px solid #eee;
   padding: 6px;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   color: #333;
   outline: none;
@@ -171,7 +188,7 @@ img {
 }
 
 .chapter {
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   height: 100vh;
   overflow: auto;
 }
@@ -195,7 +212,84 @@ img {
   padding: 5%;
 }
 
-.chapter__ctrl a{
+.chapter__ctrl a {
   color: #fff;
   padding: 8px 12px;
+}
+
+.loading__container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  -webkit-animation: load 3s linear infinite;
+}
+
+.loading div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.loading span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #99CC66;
+  position: absolute;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  -webkit-animation: changeBgColor 3s ease infinite;
+}
+
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  33.3% {
+    -webkit-transform: rotate(120deg);
+  }
+  66.6% {
+    -webkit-transform: rotate(240deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes changeBgColor {
+  0%, 100% {
+    background: #99CC66;
+  }
+  33.3% {
+    background: #FFFF66;
+  }
+  66.6% {
+    background: #FF6666;
+  }
+}
+
+.loading div:nth-child(2) {
+  -webkit-transform: rotate(120deg);
+}
+
+.loading div:nth-child(3) {
+  -webkit-transform: rotate(240deg);
+}
+
+.loading div:nth-child(2) span {
+  -webkit-animation-delay: 0.5s;
+}
+
+.loading div:nth-child(3) span {
+  -webkit-animation-delay: 1s;
 }

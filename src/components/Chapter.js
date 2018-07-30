@@ -3,6 +3,7 @@ import {getChapter} from '../requests';
 import {Link} from 'react-router-dom';
 import content from '../content';
 import {getChapterLink} from '../util';
+import Loading from './Loading';
 
 class Chapter extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class Chapter extends React.Component {
       content: '',
       currentChapterLink: '',
       prevChapterLink: '/',
-      nextChapterLink: '/'
+      nextChapterLink: '/',
+      loading: false
     };
   }
 
@@ -25,6 +27,11 @@ class Chapter extends React.Component {
   }
 
   init(props) {
+    const {chapterEle} = this;
+    if (chapterEle) {
+      chapterEle.scrollTop = 0;
+    }
+
     const {chapterList, match, order} = props;
     const {link: chapterLink, id: bookId} = match.params;
     const currentChapterLink = decodeURIComponent(chapterLink);
@@ -42,7 +49,8 @@ class Chapter extends React.Component {
         bookId,
         nextChapterLink,
         prevChapterLink,
-        currentChapterLink
+        currentChapterLink,
+        loading: true
       });
     }
 
@@ -65,7 +73,8 @@ class Chapter extends React.Component {
           }
 
           this.setState({
-            content
+            content,
+            loading: false
           })
         }
       )
@@ -76,27 +85,30 @@ class Chapter extends React.Component {
       bookId,
       content,
       prevChapterLink,
-      nextChapterLink
+      nextChapterLink,
+      loading
     } = this.state;
 
     const _prevChapterLink = getChapterLink(prevChapterLink, bookId);
     const _nextChapterLink = getChapterLink(nextChapterLink, bookId);
 
     return (
-      <div className={'chapter'}>
-        <div className={'chapter__content'}>
+      <Loading loading={loading}>
+        <div className={'chapter'} ref={e => {this.chapterEle = e}}>
+          <div className={'chapter__content'}>
           <pre className={'chapter__per'}>
             {
               content
             }
           </pre>
+          </div>
+          <div className={'chapter__ctrl'}>
+            <Link to={_prevChapterLink}>上一章</Link>
+            <Link to={`/book/${bookId}`}>返回列表</Link>
+            <Link to={_nextChapterLink}>下一章</Link>
+          </div>
         </div>
-        <div className={'chapter__ctrl'}>
-          <Link to={_prevChapterLink}>上一章</Link>
-          <Link to={`/book/${bookId}`}>返回列表</Link>
-          <Link to={_nextChapterLink}>下一章</Link>
-        </div>
-      </div>
+      </Loading>
     )
   }
 }

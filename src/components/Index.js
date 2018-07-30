@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {searchBook} from '../requests';
+import Loading from './Loading';
 
 class Index extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class Index extends React.Component {
     this.state = {
       searchText: '',
       searchState: false,
-      searchLists: []
+      searchLists: [],
+      loading: false
     };
   }
 
@@ -24,23 +26,24 @@ class Index extends React.Component {
 
   handleClickSearchButton() {
     const {searchText} = this.state;
+    let searchState = false;
     if (searchText) {
-      this.setState({
-        searchState: true
-      });
+      searchState = true;
       this.searchBook(searchText)
-    } else {
-      alert('请输入内容')
     }
+    this.setState({
+      searchState,
+      loading: searchState
+    });
   }
 
   async searchBook(text) {
     await searchBook(text)
       .then(
         data => {
-          console.log(data.books)
           this.setState({
-            searchLists: data.books
+            searchLists: data.books,
+            loading: false
           })
         }
       )
@@ -50,7 +53,8 @@ class Index extends React.Component {
     const {
       searchText,
       searchState,
-      searchLists
+      searchLists,
+      loading
     } = this.state;
 
     const {
@@ -59,34 +63,36 @@ class Index extends React.Component {
     } = this;
 
     return (
-      <div className={'index'}>
-        <div className={`search__form${searchState ? ' active' : ''}`}>
-          <input
-            type="text"
-            value={searchText}
-            onChange={handelChangeSearchInput.bind(this)}
-            className={'search__input'}
-            placeholder={'请输入搜索内容'}/>
-          <button
-            className={'search__button'}
-            onClick={handleClickSearchButton.bind(this)}>搜索</button>
-        </div>
-        <div className={`search__list${searchState ? ' active' : ''}`}>
-          {
-            searchLists.map(item => (
-              <Link to={`/book/${item._id}`} key={item._id} className={'search__list_item'}>
-                <div className={'search__list_info'}>
-                  <div className={'search__list_title'}>
-                    <h3>{item.title}</h3>
-                    <span className={'search__list_author'}>{item.author}</span>
+      <Loading loading={loading}>
+        <div className={'index'}>
+          <div className={`search__form${searchState ? ' active' : ''}`}>
+            <input
+              type="text"
+              value={searchText}
+              onChange={handelChangeSearchInput.bind(this)}
+              className={'search__input'}
+              placeholder={'请输入搜索内容'}/>
+            <button
+              className={'search__button'}
+              onClick={handleClickSearchButton.bind(this)}>搜索</button>
+          </div>
+          <div className={`search__list${searchState ? ' active' : ''}`}>
+            {
+              searchLists.map(item => (
+                <Link to={`/book/${item._id}`} key={item._id} className={'search__list_item'}>
+                  <div className={'search__list_info'}>
+                    <div className={'search__list_title'}>
+                      <h3>{item.title}</h3>
+                      <span className={'search__list_author'}>{item.author}</span>
+                    </div>
+                    <div className={'search__list_intro'}>{item.shortIntro}</div>
                   </div>
-                  <div className={'search__list_intro'}>{item.shortIntro}</div>
-                </div>
-              </Link>
-            ))
-          }
+                </Link>
+              ))
+            }
+          </div>
         </div>
-      </div>
+      </Loading>
     )
   }
 }
