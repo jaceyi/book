@@ -15,10 +15,23 @@ img {
 
 .container {
   width: 100vw;
-  height: 100vh;
-  background: url("//yijic.com/public/images/bg/1.jpg") no-repeat center;
-  background-size: cover;
+  min-height: 100vh;
   position: relative;
+}
+
+.container__bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff no-repeat center;
+  background-size: cover;
+}
+
+.container__main {
+  position: relative;
+  z-index: 2;
 }
 
 .index {
@@ -120,9 +133,7 @@ img {
 }
 
 .book {
-  height: 100vh;
   background-color: rgba(255, 255, 255, 0.8);
-  overflow: auto;
 }
 
 .book__home_button {
@@ -200,8 +211,6 @@ img {
 
 .chapter {
   background-color: rgba(0, 0, 0, 0.8);
-  height: 100vh;
-  overflow: scroll;
 }
 
 .chapter__content {
@@ -229,14 +238,12 @@ img {
 }
 
 .loading__container {
-  height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 
 .loading {
+  margin: 200px auto 0;
   width: 60px;
   height: 60px;
   position: relative;
