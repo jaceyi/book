@@ -6,6 +6,8 @@ import Loading from './Loading';
 class Index extends React.Component {
   constructor(props) {
     super(props);
+
+    this.timer = null;
     this.state = {
       searchText: '',
       searchState: false,
@@ -15,38 +17,49 @@ class Index extends React.Component {
   }
 
   componentWillMount() {
-    this.searchBook('斗破苍穹')
+    const searchText = this.props.match.params.text;
+    if (searchText) {
+      this.changeSearchParams(searchText);
+    }
   }
 
   handelChangeSearchInput({target}) {
+    const searchText = target.value;
     this.setState({
-      searchText: target.value
-    })
+      searchText
+    });
+
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.changeSearchParams(searchText), 800)
   }
 
-  handleClickSearchButton() {
-    const {searchText} = this.state;
+  changeSearchParams(searchText) {
+    this.props.history.push(`/search/${searchText}`);
+    this.searchBook(searchText)
+  }
+
+  searchBook(searchText) {
     let searchState = false;
     if (searchText) {
       searchState = true;
-      this.searchBook(searchText)
+      searchBook(searchText)
+        .then(
+          data => {
+            this.setState({
+              searchLists: data.books,
+              loading: false
+            })
+          }
+        )
+    } else {
+      this.props.history.push('/');
     }
+
     this.setState({
       searchState,
+      searchText,
       loading: searchState
     });
-  }
-
-  async searchBook(text) {
-    await searchBook(text)
-      .then(
-        data => {
-          this.setState({
-            searchLists: data.books,
-            loading: false
-          })
-        }
-      )
   }
 
   render() {
@@ -58,8 +71,7 @@ class Index extends React.Component {
     } = this.state;
 
     const {
-      handelChangeSearchInput,
-      handleClickSearchButton
+      handelChangeSearchInput
     } = this;
 
     return (
@@ -72,13 +84,10 @@ class Index extends React.Component {
               onChange={handelChangeSearchInput.bind(this)}
               className={'search__input'}
               placeholder={'请输入搜索内容'}/>
-            <button
-              className={'search__button'}
-              onClick={handleClickSearchButton.bind(this)}>搜索</button>
           </div>
           <div className={`search__list${searchState ? ' active' : ''}`}>
             {
-              searchLists.map(item => (
+              searchLists.length ? searchLists.map(item => (
                 <Link to={`/book/${item._id}`} key={item._id} className={'search__list_item'}>
                   <div className={'search__list_info'}>
                     <div className={'search__list_title'}>
@@ -88,7 +97,10 @@ class Index extends React.Component {
                     <div className={'search__list_intro'}>{item.shortIntro}</div>
                   </div>
                 </Link>
-              ))
+              )) :
+                <div className={'search__list_not'}>
+                  暂无内容
+                </div>
             }
           </div>
         </div>

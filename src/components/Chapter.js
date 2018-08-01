@@ -27,10 +27,7 @@ class Chapter extends React.Component {
   }
 
   init(props) {
-    const {chapterEle} = this;
-    if (chapterEle) {
-      chapterEle.scrollTop = 0;
-    }
+    window.scrollTo(0, 0);
 
     const {chapterList, match, order} = props;
     const {link: chapterLink, id: bookId} = match.params;
@@ -57,8 +54,8 @@ class Chapter extends React.Component {
     this.getChapter(chapterLink);
   }
 
-  async getChapter(link) {
-    await getChapter(link)
+  getChapter(link) {
+    getChapter(link)
       .then(
         data => {
           const {chapter} = data;
@@ -94,7 +91,9 @@ class Chapter extends React.Component {
 
     return (
       <Loading loading={loading}>
-        <div className={'chapter'} ref={e => {this.chapterEle = e}}>
+        <div className={'chapter'} ref={e => {
+          this.chapterEle = e
+        }}>
           <div className={'chapter__content'}>
           <pre className={'chapter__per'}>
             {

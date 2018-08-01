@@ -12,11 +12,14 @@ function Book(props) {
     loading
   } = props;
 
+  window.scrollTo(0, 0);
+
   const date = new Date(bookInfo.updated);
   let lastChapter = {
     title: '暂无',
     link: '/'
   };
+
   if (chapterList.length) {
     const firstChapter = chapterList[0];
     if (firstChapter.title === bookInfo.lastChapter) {
@@ -65,6 +68,7 @@ function Book(props) {
                   </div>
                 ))
               }
+              <div className={'book__chapter_footer'}>到底啦！</div>
             </div>
           </div>
         }

@@ -36,8 +36,8 @@ export default function content(Component) {
       }
     }
 
-    async getBook(id) {
-      await getBook(id)
+    getBook(id) {
+      getBook(id)
         .then(
           data => {
             store.bookInfo = data;
@@ -48,21 +48,25 @@ export default function content(Component) {
         )
     }
 
-    async getBookOrigin(id) {
-      await getBookOrigin(id)
+    getBookOrigin(id) {
+      getBookOrigin(id)
         .then(
           data => {
             let index = data.findIndex(item => item.source === 'my176');
             if (index < 0) {
-              index = 0
+              if (data.length > 1) {
+                index = 1
+              } else {
+                index = 0
+              }
             }
             this.getChapterList(data[index]._id)
           }
         )
     }
 
-    async getChapterList(id) {
-      await getChapterList(id)
+    getChapterList(id) {
+      getChapterList(id)
         .then(
           data => {
             const {chapters: chapterList} = data;

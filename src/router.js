@@ -14,6 +14,7 @@ export default function() {
         <HashRouter>
           <Switch>
             <Route path={'/'} exact component={Index}/>
+            <Route path={'/search/:text'} exact component={Index}/>
             <Route path={'/book/:id'} exact component={Book}/>
             <Route path={'/book/:id/chapter/:link'} exact component={Chapter}/>
           </Switch>

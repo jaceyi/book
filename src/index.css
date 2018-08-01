@@ -60,26 +60,17 @@ img {
 }
 
 .search__input {
-  width: 78%;
+  width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.8);
   outline: none;
   font-size: 16px;
   padding: 5px 8px;
   background: rgba(0, 0, 0, 0.3);
-  border-right: 0;
   color: #fff;
 }
 
 .search__input::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.8);
-}
-
-.search__button {
-  width: 22%;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  background: rgba(0, 0, 0, 0.3);
-  outline: none;
-  color: #fff;
 }
 
 .search__list {
@@ -90,6 +81,12 @@ img {
   overflow: hidden;
   opacity: 0;
   transition: all 0.3s;
+}
+
+.search__list_not {
+  line-height: 300px;
+  text-align: center;
+  color: #888;
 }
 
 .search__list.active {
@@ -209,6 +206,12 @@ img {
   padding: 0 10px;
 }
 
+.book__chapter_footer {
+  line-height: 60px;
+  text-align: center;
+  color: #999;
+}
+
 .chapter {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -239,6 +242,7 @@ img {
 
 .loading__container {
   width: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
