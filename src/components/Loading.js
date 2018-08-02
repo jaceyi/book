@@ -4,15 +4,17 @@ export default function ({loading, children}) {
   return (
     <div className={'loading__container'}>
       {
-        loading ?
-          <div>
-            <div className={'loading'}>
-              <div><span/></div>
-              <div><span/></div>
-              <div><span/></div>
-              <div><span/></div>
-            </div>
-          </div>: children
+        loading  && <div className={'loading__box'}>
+          <div className={'loading'}>
+            <div><span/></div>
+            <div><span/></div>
+            <div><span/></div>
+            <div><span/></div>
+          </div>
+        </div>
+      }
+      {
+        children
       }
     </div>
   )

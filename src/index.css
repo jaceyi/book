@@ -246,6 +246,14 @@ img {
   overflow: hidden;
 }
 
+.loading__box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .loading {
   margin: 200px auto 0;
   width: 60px;

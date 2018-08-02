@@ -12,15 +12,9 @@ class Index extends React.Component {
       searchText: '',
       searchState: false,
       searchLists: [],
+      focusState: false,
       loading: false
     };
-  }
-
-  componentWillMount() {
-    const searchText = this.props.match.params.text;
-    if (searchText) {
-      this.changeSearchParams(searchText);
-    }
   }
 
   handelChangeSearchInput({target}) {
@@ -33,15 +27,35 @@ class Index extends React.Component {
     this.timer = setTimeout(() => this.changeSearchParams(searchText), 800)
   }
 
+  handelBlurSearchInput() {
+    let searchState = false;
+    if (this.state.searchText) {
+      searchState = true
+    }
+    this.setState({
+      focusState: false,
+      searchState
+    })
+  }
+
+  handelFocusSearchInput() {
+    this.setState({
+      focusState: true
+    })
+  }
+
   changeSearchParams(searchText) {
-    this.props.history.push(`/search/${searchText}`);
     this.searchBook(searchText)
   }
 
   searchBook(searchText) {
+    const {focusState} = this.state;
+
     let searchState = false;
+    let loading = false;
     if (searchText) {
       searchState = true;
+      loading = true;
       searchBook(searchText)
         .then(
           data => {
@@ -51,14 +65,14 @@ class Index extends React.Component {
             })
           }
         )
-    } else {
-      this.props.history.push('/');
+    } else if (focusState) {
+      searchState = true;
     }
 
     this.setState({
       searchState,
       searchText,
-      loading: searchState
+      loading
     });
   }
 
@@ -71,7 +85,9 @@ class Index extends React.Component {
     } = this.state;
 
     const {
-      handelChangeSearchInput
+      handelChangeSearchInput,
+      handelBlurSearchInput,
+      handelFocusSearchInput
     } = this;
 
     return (
@@ -81,6 +97,8 @@ class Index extends React.Component {
             <input
               type="text"
               value={searchText}
+              onFocus={handelFocusSearchInput.bind(this)}
+              onBlur={handelBlurSearchInput.bind(this)}
               onChange={handelChangeSearchInput.bind(this)}
               className={'search__input'}
               placeholder={'请输入搜索内容'}/>
