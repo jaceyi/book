@@ -1,6 +1,6 @@
 # book
 
-> Jace's website.
+> 小说网站，外部api接口，支持换源。
 
 ## Start
 
