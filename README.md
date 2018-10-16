@@ -1,6 +1,7 @@
 # book
 
 > 小说网站，外部api接口，支持换源。
+> 线上地址：[http://k.yijic.com](http://k.yijic.com)
 
 ## Start
 
