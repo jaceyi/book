@@ -5,7 +5,7 @@ import Book from './components/Book';
 import Chapter from './components/Chapter';
 
 export default function() {
-  const bgUrl = `url(//yijic.com/public/images/bg/${Math.floor(Math.random() * 13 + 1)}.jpg)`;
+  const bgUrl = `url(//yijic.com/public/images/bg_${Math.floor(Math.random() * 3 + 1)}.jpg)`;
 
   return(
     <div className={'container'}>
