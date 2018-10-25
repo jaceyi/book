@@ -323,3 +323,14 @@ img {
 .loading div:nth-child(3) span {
   -webkit-animation-delay: 1s;
 }
+
+.my__book_list {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.my__book_list a {
+  color: #fff;
+  line-height: 24px;
+}

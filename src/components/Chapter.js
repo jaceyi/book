@@ -59,6 +59,7 @@ class Chapter extends React.Component {
       .then(
         data => {
           const {chapter} = data;
+          document.title = chapter.title;
           let content = '';
           if (chapter.cpContent) {
             content = chapter.cpContent
