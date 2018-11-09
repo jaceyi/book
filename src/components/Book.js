@@ -13,7 +13,8 @@ function Book(props) {
   } = props;
 
   window.scrollTo(0, 0);
-
+  document.title = `yi家书屋 — ${bookInfo.title}`;
+  
   const date = new Date(bookInfo.updated);
   let lastChapter = {
     title: '暂无',
