@@ -39,7 +39,7 @@ class Book extends Component {
         if (page === this.state.currentPage) _default = true;
         optionList.push({
           default: _default,
-          label: `第${page}页：${chapterList[(page - 1) * 50].title}……`
+          label: `第${page}页：${chapterList[(page - 1) * 50].title.slice(0, 6)}…`
         })
       }
     }
@@ -103,7 +103,7 @@ class Book extends Component {
               </div>
               <div className={'book__chapter_tip'}>
                 <span>章节列表</span>
-                <button className={'book__chapter_reverse'} onClick={reverseChapterList}>Reverse</button>
+                <button className={'book__chapter_btn'} onClick={reverseChapterList}>Reverse</button>
               </div>
               <div className={'book__chapter_list'}>
                 {
@@ -118,10 +118,12 @@ class Book extends Component {
                   ))
                 }
                 <div className={'book__chapter_footer'}>
-                  <button onClick={() => this.getCurrentList(currentPage-1)}>上一页</button>
+                  <button 
+                    className={'book__chapter_btn'} 
+                    onClick={() => this.getCurrentList(currentPage-1)}>上一页</button>
                   <select 
                     onChange={v => this.handleChangeSelelct(v)}
-                    className={'book__chapter_select'} 
+                    className={'book__chapter_btn book__chapter_select'} 
                   >
                     {
                       optionList.map((item, index) => (
@@ -129,7 +131,9 @@ class Book extends Component {
                       ))
                     }
                   </select>
-                  <button onClick={() => this.getCurrentList(currentPage+1)}>下一页</button>
+                  <button 
+                    className={'book__chapter_btn'} 
+                    onClick={() => this.getCurrentList(currentPage+1)}>下一页</button>
                 </div>
               </div>
             </div>
