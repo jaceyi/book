@@ -207,9 +207,14 @@ img {
 }
 
 .book__chapter_footer {
-  line-height: 60px;
-  text-align: center;
-  color: #999;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.book__chapter_select {
+  margin: 0 10px;
+  width: 120px;
 }
 
 .chapter {
@@ -328,6 +333,10 @@ img {
   text-align: center;
   font-size: 14px;
   margin-top: 20px;
+}
+
+.my__book_list.active {
+  display: none;
 }
 
 .my__book_list a {

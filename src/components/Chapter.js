@@ -1,7 +1,7 @@
 import React from 'react';
 import {getChapter} from '../requests';
 import {Link} from 'react-router-dom';
-import content from '../content';
+import connect from '../connect';
 import {getChapterLink} from '../util';
 import Loading from './Loading';
 
@@ -113,4 +113,4 @@ class Chapter extends React.Component {
   }
 }
 
-export default content(Chapter);
+export default connect(Chapter);

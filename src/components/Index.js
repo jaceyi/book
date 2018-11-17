@@ -103,10 +103,12 @@ class Index extends React.Component {
               className={'search__input'}
               placeholder={'请输入搜索内容'}/>
           </div>
-          <ul className={'my__book_list'}>
+          <ul className={`my__book_list${searchState ? ' active' : ''}`}>
             <li><Link to={'/book/50bee5172033d09b2f00001b'}>武炼巅峰</Link></li>
             <li><Link to={'/book/59ba0dbb017336e411085a4e'}>元尊</Link></li>
             <li><Link to={'/book/5091fbcf8d834c0f190000cd'}>校花的贴身高手</Link></li>
+            <li><Link to={'/book/5a5577e59b2420ef3fda94f2'}>落地一把98K</Link></li>
+            <li><Link to={'/book/54ad1582ad74f37426dd961e'}>无敌剑域</Link></li>
           </ul>
           <div className={`search__list${searchState ? ' active' : ''}`}>
             {

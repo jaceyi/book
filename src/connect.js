@@ -7,7 +7,7 @@ const store = {
   order: true
 };
 
-export default function content(Component) {
+export default function (Component) {
   return class extends React.Component {
     constructor(props) {
       super(props);
