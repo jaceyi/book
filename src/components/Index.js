@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {searchBook} from '../requests';
 import Loading from './Loading';
+import {formatSearchParams} from '../util';
 
 class Index extends React.Component {
   constructor(props) {
@@ -15,6 +16,18 @@ class Index extends React.Component {
       focusState: false,
       loading: false
     };
+  }
+
+  componentWillMount() {
+    const searchParams = formatSearchParams(this.props.location.search);
+    if (searchParams) {
+      const searchText = decodeURI(searchParams.searchText);
+      this.setState({
+        searchText: searchText,
+        searchState: true
+      });
+      this.searchBook(searchText)
+    }
   }
 
   handelChangeSearchInput({target}) {
@@ -45,7 +58,8 @@ class Index extends React.Component {
   }
 
   changeSearchParams(searchText) {
-    this.searchBook(searchText)
+    this.props.history.push(`/?searchText=${searchText}`);
+    this.searchBook(searchText);
   }
 
   searchBook(searchText) {
@@ -66,6 +80,7 @@ class Index extends React.Component {
           }
         )
     } else if (focusState) {
+      this.props.history.push('/');
       searchState = true;
     }
 
@@ -84,31 +99,22 @@ class Index extends React.Component {
       loading
     } = this.state;
 
-    const {
-      handelChangeSearchInput,
-      handelBlurSearchInput,
-      handelFocusSearchInput
-    } = this;
-
     return (
       <Loading loading={loading}>
         <div className={'index'}>
           <div className={`search__form${searchState ? ' active' : ''}`}>
             <input
               type="text"
-              value={searchText}
-              onFocus={handelFocusSearchInput.bind(this)}
-              onBlur={handelBlurSearchInput.bind(this)}
-              onChange={handelChangeSearchInput.bind(this)}
+              value={searchText || ''}
+              onFocus={() => this.handelFocusSearchInput()}
+              onBlur={() => this.handelBlurSearchInput()}
+              onChange={v => this.handelChangeSearchInput(v)}
               className={'search__input'}
               placeholder={'请输入搜索内容'}/>
           </div>
           <ul className={`my__book_list${searchState ? ' active' : ''}`}>
-            <li><Link to={'/book/50bee5172033d09b2f00001b'}>武炼巅峰</Link></li>
             <li><Link to={'/book/59ba0dbb017336e411085a4e'}>元尊</Link></li>
-            <li><Link to={'/book/5091fbcf8d834c0f190000cd'}>校花的贴身高手</Link></li>
             <li><Link to={'/book/5a5577e59b2420ef3fda94f2'}>落地一把98K</Link></li>
-            <li><Link to={'/book/54ad1582ad74f37426dd961e'}>无敌剑域</Link></li>
           </ul>
           <div className={`search__list${searchState ? ' active' : ''}`}>
             {

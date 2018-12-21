@@ -37,3 +37,16 @@ export function dateToStr(datetime) {
 export function getChapterLink(chapterLink, bookId) {
   return chapterLink ? `/book/${bookId}/chapter/${encodeURIComponent(chapterLink)}` : `/book/${bookId}`;
 }
+
+export function formatSearchParams(params) {
+  if (!params) {
+    return null
+  }
+  const _params = params.slice(1);
+  const _o = {};
+  _params.split('&').forEach(item => {
+    const _items = item.split('=');
+    _o[_items[0]] = _items[1];
+  });
+  return _o;
+}
