@@ -37,7 +37,7 @@ class Index extends React.Component {
     });
 
     clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.changeSearchParams(searchText), 800)
+    this.timer = setTimeout(() => this.changeSearchParams(searchText), 500)
   }
 
   handelBlurSearchInput() {
