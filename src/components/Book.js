@@ -23,7 +23,7 @@ class Book extends Component {
   componentWillReceiveProps({bookInfo, chapterList}) {
     this.componentInit({bookInfo, chapterList})
   }
- 
+
   componentInit({bookInfo, chapterList}) {
     window.scrollTo(0, 0);
     document.title = `yi家书屋 — ${bookInfo.title}`;
@@ -77,7 +77,7 @@ class Book extends Component {
       updateTime,
       currentPage
     } = this.state;
-      
+
     return (
       <Loading loading={loading}>
         <div className={'book'}>
@@ -98,7 +98,7 @@ class Book extends Component {
                 </div>
                 <div className={'book__info_bottom'}>{bookInfo.longIntro}</div>
                 <div className={'book__home_button'}>
-                  <Link to={'/'}><img src="//yijic.com/public/images/yi.png" alt=""/></Link>
+                  <Link to={'/'}><img src="//yijic.com/static/images/yi.png" alt=""/></Link>
                 </div>
               </div>
               <div className={'book__chapter_tip'}>
@@ -118,12 +118,12 @@ class Book extends Component {
                   ))
                 }
                 <div className={'book__chapter_footer'}>
-                  <button 
-                    className={'book__chapter_btn'} 
+                  <button
+                    className={'book__chapter_btn'}
                     onClick={() => this.getCurrentList(currentPage-1)}>上一页</button>
-                  <select 
+                  <select
                     onChange={v => this.handleChangeSelelct(v)}
-                    className={'book__chapter_btn book__chapter_select'} 
+                    className={'book__chapter_btn book__chapter_select'}
                   >
                     {
                       optionList.map((item, index) => (
@@ -131,8 +131,8 @@ class Book extends Component {
                       ))
                     }
                   </select>
-                  <button 
-                    className={'book__chapter_btn'} 
+                  <button
+                    className={'book__chapter_btn'}
                     onClick={() => this.getCurrentList(currentPage+1)}>下一页</button>
                 </div>
               </div>
