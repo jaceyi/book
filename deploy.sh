@@ -5,6 +5,6 @@ mkdir dist
 mv build dist/build
 
 cp app.js dist/app.js
-scp -r ./dist/* root@106.75.85.211:/data/book/
+scp -r ./dist/* root@k.yijic.com:/data/book/
 
 rm -rf dist
