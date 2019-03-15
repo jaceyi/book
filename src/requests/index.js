@@ -25,3 +25,8 @@ export async function getChapter(params) {
   const response = await axios.get(apis.getChapter(params));
   return response.data
 }
+
+export async function getBackground() {
+  const response = await axios.get(apis.background);
+  return response.data.images;
+}

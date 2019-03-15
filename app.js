@@ -17,12 +17,16 @@ app.use('/chapter', proxy({
   }
 ));
 
-app.get('/*', function (req, res) {
-  let pathname = req.url;
-  if (pathname === '/') {
-    pathname = 'index.html'
+app.use('/background', proxy({
+    target: 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN/',
+    changeOrigin: true
   }
-  res.sendFile(__dirname + '/build/'+ pathname)
+));
+
+app.use('/static', express.static('build/static'))
+
+app.get('/*', function(req, res) {
+  res.sendFile(`${__dirname}/build/index.html`)
 });
 
 app.listen(3001);

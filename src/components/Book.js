@@ -26,7 +26,7 @@ class Book extends Component {
 
   componentInit({bookInfo, chapterList}) {
     window.scrollTo(0, 0);
-    document.title = `yi家书屋 — ${bookInfo.title}`;
+    document.title = `yi家书屋 — ${bookInfo.title || ''}`;
     let optionList = [];
     let lastChapter = {
       title: '暂无',

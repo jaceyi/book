@@ -5,6 +5,6 @@ mkdir dist
 mv build dist/build
 
 cp app.js dist/app.js
-rsync -avzP --delete ./dist/* root@yijic.com:~/book/
+scp -r ./dist/* root@106.75.85.211:/data/book/
 
 rm -rf dist
