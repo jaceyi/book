@@ -5,8 +5,6 @@
 
 <br>
 
-又把服务器迁到国内了，不过没备案，不知道啥时候回给禁掉...
-
 ## Start
 
 ``` bash
@@ -19,6 +17,9 @@ yarn start
 # 编译前端代码
 yarn build
 
+# watch编译代码 方便node调试
+yarn watch
+
 # 启动 Node 服务器
-node book_app.js
+node app.js
 ```
