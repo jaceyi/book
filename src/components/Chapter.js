@@ -90,9 +90,11 @@ class Chapter extends React.Component {
     const _prevChapterLink = getChapterLink(prevChapterLink, bookId);
     const _nextChapterLink = getChapterLink(nextChapterLink, bookId);
 
+    const hour = new Date().getHours();
+
     return (
       <Loading loading={loading}>
-        <div className={'chapter'} ref={e => {
+        <div className={(hour >= 20 || hour <= 8) ? 'night' : 'daytime'} ref={e => {
           this.chapterEle = e
         }}>
           <div className={'chapter__content'}>
