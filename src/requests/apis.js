@@ -3,6 +3,5 @@ export default {
   getBook: param => `/api/book/${param}`,
   getBookOrigin: param => `/api/toc?view=summary&book=${param}`,
   getChapterList: param => `/api/toc/${param}?view=chapters`,
-  getChapter: param => `/chapter/${param}`,
-  background: '/background'
+  getChapter: param => `/chapter/${param}`
 }

@@ -17,12 +17,6 @@ app.use('/chapter', proxy({
   }
 ));
 
-app.use('/background', proxy({
-    target: 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN/',
-    changeOrigin: true
-  }
-));
-
 app.use('/static', express.static('build/static'))
 
 app.get('/*', function(req, res) {

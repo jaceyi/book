@@ -61,6 +61,22 @@ module.exports = {
       warnings: true,
       errors: true
     },
-    port: 8080
+    port: 8080,
+    proxy: {
+      "/api": {
+        target: "http://api.zhuishushenqi.com/",
+        pathRewrite: {
+          "^/api": "/"
+        },
+        "changeOrigin": true
+      },
+      "/chapter": {
+        target: "http://chapter2.zhuishushenqi.com/",
+        pathRewrite: {
+          "^/chapter": "/chapter"
+        },
+        changeOrigin: true
+      }
+    }
   }
 };

@@ -17,21 +17,8 @@ img {
   width: 100vw;
   min-height: 100vh;
   position: relative;
-}
-
-.container__bg {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #fff no-repeat center;
+  background: #fff url("https://api.ooopn.com/image/bing/api.php?v=2&type=jump") no-repeat center fixed;
   background-size: cover;
-}
-
-.container__main {
-  position: relative;
-  z-index: 2;
 }
 
 .index {
@@ -248,6 +235,10 @@ img {
 .chapter__ctrl a {
   color: #fff;
   padding: 8px 12px;
+}
+
+.daytime .chapter__ctrl a {
+  color: #888;
 }
 
 .loading__container {

@@ -9,7 +9,7 @@ export function realBookCover(url) {
 
 export function dateToStr(datetime) {
   let year = datetime.getFullYear();
-  let month = datetime.getMonth() + 1;//js从0开始取
+  let month = datetime.getMonth() + 1;
   let date = datetime.getDate();
   let hour = datetime.getHours();
   let minutes = datetime.getMinutes();
