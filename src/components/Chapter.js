@@ -97,14 +97,14 @@ class Chapter extends React.Component {
         <div className={(hour >= 20 || hour <= 8) ? 'night' : 'daytime'} ref={e => {
           this.chapterEle = e
         }}>
-          <div className={'chapter__content'}>
-          <pre className={'chapter__per'}>
+          <div className="chapter__content">
+          <pre className="chapter__per">
             {
               content
             }
           </pre>
           </div>
-          <div className={'chapter__ctrl'}>
+          <div className="chapter__ctrl">
             <Link to={_prevChapterLink}>上一章</Link>
             <Link to={`/book/${bookId}`}>返回列表</Link>
             <Link to={_nextChapterLink}>下一章</Link>

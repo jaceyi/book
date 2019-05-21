@@ -17,9 +17,9 @@ app.use('/chapter', proxy({
   }
 ));
 
-app.use('/static', express.static('build/static'))
+app.use('/static', express.static('build/static'));
 
-app.get('/*', function(req, res) {
+app.use('/*', function(req, res) {
   res.sendFile(`${__dirname}/build/index.html`)
 });
 

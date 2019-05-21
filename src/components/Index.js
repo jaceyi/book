@@ -101,7 +101,7 @@ class Index extends React.Component {
 
     return (
       <Loading loading={loading}>
-        <div className={'index'}>
+        <div className="index">
           <div className={`search__form${searchState ? ' active' : ''}`}>
             <input
               type="text"
@@ -109,27 +109,27 @@ class Index extends React.Component {
               onFocus={() => this.handelFocusSearchInput()}
               onBlur={() => this.handelBlurSearchInput()}
               onChange={v => this.handelChangeSearchInput(v)}
-              className={'search__input'}
-              placeholder={'请输入搜索内容'}/>
+              className="search__input"
+              placeholder="请输入搜索内容"/>
           </div>
           <ul className={`my__book_list${searchState ? ' active' : ''}`}>
-            <li><Link to={'/book/59ba0dbb017336e411085a4e'}>元尊</Link></li>
-            <li><Link to={'/book/5a5577e59b2420ef3fda94f2'}>落地一把98K</Link></li>
+            <li><Link to="/book/59ba0dbb017336e411085a4e">元尊</Link></li>
+            <li><Link to="/book/5a5577e59b2420ef3fda94f2">落地一把98K</Link></li>
           </ul>
           <div className={`search__list${searchState ? ' active' : ''}`}>
             {
               searchLists.length ? searchLists.map(item => (
-                <Link to={`/book/${item._id}`} key={item._id} className={'search__list_item'}>
-                  <div className={'search__list_info'}>
-                    <div className={'search__list_title'}>
+                <Link to={`/book/${item._id}`} key={item._id} className="search__list_item">
+                  <div className="search__list_info">
+                    <div className="search__list_title">
                       <h3>{item.title}</h3>
-                      <span className={'search__list_author'}>{item.author}</span>
+                      <span className="search__list_author">{item.author}</span>
                     </div>
-                    <div className={'search__list_intro'}>{item.shortIntro}</div>
+                    <div className="search__list_intro">{item.shortIntro}</div>
                   </div>
                 </Link>
               )) :
-                <div className={'search__list_not'}>
+                <div className="search__list_not">
                   暂无内容
                 </div>
             }

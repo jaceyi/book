@@ -52,7 +52,7 @@ class Book extends Component {
 
   getCurrentList(page = this.state.currentPage) {
     if (this.state.optionList.length && (page <= 0 || page > this.state.optionList.length)) {
-      return alert('唉呀妈呀！')
+      return alert('木有了！')
     }
     this.setState({
       currentPage: page,
@@ -80,15 +80,15 @@ class Book extends Component {
 
     return (
       <Loading loading={loading}>
-        <div className={'book'}>
+        <div className="book">
           {
             bookInfo._id && <div>
-              <div className={'book__info'}>
-                <div className={'book__info_top'}>
-                  <div className={'book__info_img'}>
+              <div className="book__info">
+                <div className="book__info_top">
+                  <div className="book__info_img">
                     <img src={realBookCover(bookInfo.cover)} alt=""/>
                   </div>
-                  <div className={'book__info_text'}>
+                  <div className="book__info_text">
                     <h3>{bookInfo.title}</h3>
                     <p>作者：{bookInfo.author}</p>
                     <p>类型：{bookInfo.majorCate}</p>
@@ -96,19 +96,19 @@ class Book extends Component {
                     <p>最新章节：<Link to={getChapterLink(lastChapter.link, bookInfo._id)}>{lastChapter.title}</Link></p>
                   </div>
                 </div>
-                <div className={'book__info_bottom'}>{bookInfo.longIntro}</div>
-                <div className={'book__home_button'}>
+                <div className="book__info_bottom">{bookInfo.longIntro}</div>
+                <div className="book__home_button">
                   <Link to={'/'}><img src="//yijic.com/static/images/yi.png" alt=""/></Link>
                 </div>
               </div>
-              <div className={'book__chapter_tip'}>
+              <div className="book__chapter_tip">
                 <span>章节列表</span>
-                <button className={'book__chapter_btn'} onClick={reverseChapterList}>Reverse</button>
+                <button className="book__chapter_btn" onClick={reverseChapterList}>Reverse</button>
               </div>
-              <div className={'book__chapter_list'}>
+              <div className="book__chapter_list">
                 {
                   currentList.map(item => (
-                    <div key={item.link} className={'book__chapter_item'}>
+                    <div key={item.link} className="book__chapter_item">
                       <Link to={getChapterLink(item.link, bookInfo._id)}>
                         {
                           item.title
@@ -117,13 +117,13 @@ class Book extends Component {
                     </div>
                   ))
                 }
-                <div className={'book__chapter_footer'}>
+                <div className="book__chapter_footer">
                   <button
-                    className={'book__chapter_btn'}
+                    className="book__chapter_btn"
                     onClick={() => this.getCurrentList(currentPage-1)}>上一页</button>
                   <select
                     onChange={v => this.handleChangeSelelct(v)}
-                    className={'book__chapter_btn book__chapter_select'}
+                    className="book__chapter_btn book__chapter_select"
                   >
                     {
                       optionList.map((item, index) => (
@@ -132,7 +132,7 @@ class Book extends Component {
                     }
                   </select>
                   <button
-                    className={'book__chapter_btn'}
+                    className="book__chapter_btn"
                     onClick={() => this.getCurrentList(currentPage+1)}>下一页</button>
                 </div>
               </div>
