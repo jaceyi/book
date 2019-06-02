@@ -20,11 +20,11 @@ class Book extends Component {
     this.componentInit(this.props);
   }
 
-  componentWillReceiveProps({bookInfo, chapterList}) {
-    this.componentInit({bookInfo, chapterList})
+  componentWillReceiveProps(nextProps) {
+    this.componentInit(nextProps)
   }
 
-  componentInit({bookInfo, chapterList}) {
+  componentInit({bookInfo, chapterList, order}) {
     window.scrollTo(0, 0);
     document.title = `yi家书屋 — ${bookInfo.title || ''}`;
     let optionList = [];
@@ -33,7 +33,7 @@ class Book extends Component {
       link: '/'
     };
     if (chapterList.length) {
-      lastChapter = chapterList[chapterList.length - 1];
+      lastChapter = order ? chapterList[chapterList.length - 1] : chapterList[0];
       for (let page = 1; page <= Math.ceil(chapterList.length / 50); page ++) {
         let _default = false;
         if (page === this.state.currentPage) _default = true;
