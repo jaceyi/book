@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {realBookCover, dateToStr, getChapterLink} from '../util';
+import {realBookCover, dateToStr} from '../util';
 import connect from '../connect';
 import Loading from './Loading';
 
@@ -93,7 +93,7 @@ class Book extends Component {
                     <p>作者：{bookInfo.author}</p>
                     <p>类型：{bookInfo.majorCate}</p>
                     <p>更新时间：{dateToStr(updateTime)}</p>
-                    <p>最新章节：<Link to={getChapterLink(lastChapter.link, bookInfo._id)}>{lastChapter.title}</Link></p>
+                    <p>最新章节：{lastChapter.title}</p>
                   </div>
                 </div>
                 <div className="book__info_bottom">{bookInfo.longIntro}</div>
@@ -109,11 +109,7 @@ class Book extends Component {
                 {
                   currentList.map(item => (
                     <div key={item.link} className="book__chapter_item">
-                      <Link to={getChapterLink(item.link, bookInfo._id)}>
-                        {
-                          item.title
-                        }
-                      </Link>
+                      {item.title}
                     </div>
                   ))
                 }

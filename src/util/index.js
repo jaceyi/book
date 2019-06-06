@@ -34,10 +34,6 @@ export function dateToStr(datetime) {
   return year + '-' + month + '-' + date + ' ' + hour + ':' + minutes + ':' + second;
 }
 
-export function getChapterLink(chapterLink, bookId) {
-  return chapterLink ? `/book/${bookId}/chapter/${encodeURIComponent(chapterLink)}` : `/book/${bookId}`;
-}
-
 export function formatSearchParams(params) {
   if (!params) {
     return null
