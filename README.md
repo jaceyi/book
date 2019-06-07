@@ -1,6 +1,6 @@
 # book
 
-> 小说网站，追书神奇API。
+> 小说网站，追书神器API。
 > 线上地址：[http://k.yijic.com](http://k.yijic.com)
 
 <br>
