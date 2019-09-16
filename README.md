@@ -3,8 +3,6 @@
 > 小说网站，追书神器API。
 > 线上地址：[http://k.yijic.com](http://k.yijic.com)
 
-<br>
-
 ## 改用微信读书了，挺好用的，这个项目就不维护了...
 
 ## Start
